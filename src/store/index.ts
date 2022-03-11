@@ -1,0 +1,1 @@
+export { useLocalDataStore } from './localDataStore';
