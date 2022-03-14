@@ -1,6 +1,5 @@
-import { focusManager, QueryClient } from 'react-query';
+import { focusManager, onlineManager, QueryClient } from 'react-query';
 import NetInfo from '@react-native-community/netinfo';
-import { onlineManager } from 'react-query';
 import { AppStateStatus, Platform } from 'react-native';
 
 onlineManager.setEventListener(setOnline => {

@@ -1,7 +1,9 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { CountriesListScreen, MainScreen } from 'screens';
-import FontistoIcon from 'react-native-vector-icons/Fontisto';
+import IoniconsIcon from 'react-native-vector-icons/Ionicons';
+import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import { Colors } from 'config';
 
 export type MainRouteParamsList = {
 	MainScreen: undefined;
@@ -12,14 +14,31 @@ const Tab = createBottomTabNavigator<MainRouteParamsList>();
 
 export const MainRoute = () => {
 	return (
-		<Tab.Navigator screenOptions={{ headerShown: false }}>
+		<Tab.Navigator
+			screenOptions={{
+				headerShown: false,
+				tabBarStyle: {
+					shadowColor: 'black',
+					shadowOpacity: 0.3,
+					shadowRadius: 10,
+					shadowOffset: { height: 0, width: 0 },
+					elevation: 3,
+					borderTopStartRadius: 30,
+					borderTopEndRadius: 30,
+				},
+				tabBarShowLabel: false,
+				tabBarActiveTintColor: Colors.Orange,
+			}}>
 			<Tab.Screen
 				name="MainScreen"
 				component={MainScreen}
 				options={{
-					tabBarLabel: 'Main',
-					tabBarIcon: ({ size, color }) => (
-						<FontistoIcon name="home" size={size} color={color} />
+					tabBarIcon: ({ size, color, focused }) => (
+						<AntDesignIcon
+							name="home"
+							size={focused ? size + 5 : size}
+							color={color}
+						/>
 					),
 				}}
 			/>
@@ -27,9 +46,12 @@ export const MainRoute = () => {
 				name="CountriesList"
 				component={CountriesListScreen}
 				options={{
-					tabBarLabel: 'Countries',
-					tabBarIcon: ({ size, color }) => (
-						<FontistoIcon name="world-o" size={size} color={color} />
+					tabBarIcon: ({ size, color, focused }) => (
+						<IoniconsIcon
+							name="ios-globe-outline"
+							size={focused ? size + 5 : size}
+							color={color}
+						/>
 					),
 				}}
 			/>

@@ -1,5 +1,5 @@
-import { COVID19Api } from '../apis';
-import { useLocalDataStore } from '../store';
+import { COVID19Api } from 'apis';
+import { useLocalDataStore } from 'store';
 
 const mergeDataWithLocalData = (
 	data?: Summary,
@@ -38,17 +38,13 @@ const mergeDataWithLocalData = (
 const getSummary: (
 	caseSort?: CaseTypeEnum,
 	sortBy?: 'ASC' | 'DESC',
-	size?: number,
-) => Promise<Summary> = async (caseSort, sortBy, size) => {
+) => Promise<Summary> = async (caseSort, sortBy) => {
 	const apiSummary = await COVID19Api.getSummary();
 	const summary = mergeDataWithLocalData(apiSummary);
 	if (caseSort) {
 		summary.countries = summary.countries.sort((a, b) =>
 			sortBy === 'DESC' ? b[caseSort] - a[caseSort] : a[caseSort] - b[caseSort],
 		);
-	}
-	if (size) {
-		summary.countries = summary.countries.slice(0, size);
 	}
 	return summary;
 };
