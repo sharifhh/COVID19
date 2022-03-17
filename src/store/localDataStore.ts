@@ -25,7 +25,8 @@ export const useLocalDataStore = create<LocalDataStoreState>(
 			reportCases: (caseType, country, reportedCases) =>
 				set(
 					produce(state => {
-						state[caseType][country] += reportedCases;
+						state[caseType][country] =
+							(state[caseType][country] ?? 0) + reportedCases;
 						state[caseType].total += reportedCases;
 					}),
 				),

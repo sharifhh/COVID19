@@ -1,4 +1,4 @@
-import { CaseTypeEnum } from '../../types';
+import { CaseTypeEnum } from 'types';
 import { styles } from './styles';
 import { Text, TouchableOpacity } from 'react-native';
 import React, { FC, useCallback } from 'react';

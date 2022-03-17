@@ -1,4 +1,5 @@
 export { ScreenWrapper } from './ScreenWrapper';
-export { FAB } from './FAB';
+export { ReportCasesFAB } from './ReportCasesFAB';
 export { CountryCard } from './CountryCard';
-export { Sorter } from './Sorter';
+export { CaseTypeSelector } from './CaseTypeSelector';
+export { SearchInput } from './SearchInput';

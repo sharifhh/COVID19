@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import CountryFlag from 'react-native-country-flag';
 import { Text, View } from 'react-native';
+import { styles } from './styles';
 
 export const CountryCard: FC<Omit<CountryData, 'slug'>> = ({
 	iso2,
@@ -10,26 +11,10 @@ export const CountryCard: FC<Omit<CountryData, 'slug'>> = ({
 	recovered,
 }) => {
 	return (
-		<View
-			style={{
-				alignSelf: 'center',
-				marginVertical: 15,
-				padding: 15,
-				backgroundColor: 'white',
-				width: '90%',
-				height: 120,
-				shadowColor: 'black',
-				shadowOpacity: 0.3,
-				shadowRadius: 10,
-				shadowOffset: { height: 0, width: 0 },
-				elevation: 3,
-				borderRadius: 10,
-				alignItems: 'center',
-				flexDirection: 'row',
-			}}>
+		<View style={styles.container}>
 			<CountryFlag isoCode={iso2} size={45} />
-			<View style={{ marginStart: 10 }}>
-				<Text style={{ fontSize: 20, fontWeight: '600' }}>{name}</Text>
+			<View style={styles.countryData}>
+				<Text style={styles.title}>{name}</Text>
 				<Text>Confirmed: {confirmed}</Text>
 				<Text>Recovered: {recovered}</Text>
 				<Text>Deaths: {deaths}</Text>

@@ -24,8 +24,11 @@ export const useSummaryQuery = ({
 		if (newData.countries) {
 			if (searchQuery) {
 				const lowerSearchQuery = searchQuery.toLowerCase();
-				newData.countries = newData.countries.filter(country =>
-					country.name.toLowerCase().includes(lowerSearchQuery),
+				newData.countries = newData.countries.filter(
+					country =>
+						country.name.toLowerCase().includes(lowerSearchQuery) ||
+						country.iso2.toLowerCase().includes(lowerSearchQuery) ||
+						country.slug.toLowerCase().includes(lowerSearchQuery),
 				);
 			}
 			if (size) {

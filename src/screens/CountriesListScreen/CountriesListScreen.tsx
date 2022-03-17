@@ -1,9 +1,14 @@
 import React, { FC, useState } from 'react';
 import { useMainNavigator, useSummaryQuery } from 'hooks';
 import { CaseTypeEnum } from 'types';
-import { CountryCard, FAB, ScreenWrapper, Sorter } from 'components';
-import { FlatList, TextInput, View } from 'react-native';
-import IoniconsIcon from 'react-native-vector-icons/Ionicons';
+import {
+	CountryCard,
+	ReportCasesFAB,
+	ScreenWrapper,
+	SearchInput,
+	CaseTypeSelector,
+} from 'components';
+import { FlatList, View } from 'react-native';
 import { styles } from './styles';
 
 export const CountriesListScreen: FC = () => {
@@ -18,18 +23,8 @@ export const CountriesListScreen: FC = () => {
 	return (
 		<ScreenWrapper>
 			<View style={styles.headerContainer}>
-				<View style={styles.row}>
-					<TextInput
-						style={styles.searchInput}
-						onChangeText={text => setSearch(text)}
-						returnKeyType="search"
-						autoFocus={false}
-					/>
-					<View style={styles.searchIconWrapper}>
-						<IoniconsIcon name="search" size={20} color="grey" />
-					</View>
-				</View>
-				<Sorter sortCase={sortCase} setSortCase={setSortCase} />
+				<SearchInput setSearch={setSearch} />
+				<CaseTypeSelector caseType={sortCase} onChange={setSortCase} />
 			</View>
 			<FlatList
 				onRefresh={refetch}
@@ -49,7 +44,7 @@ export const CountriesListScreen: FC = () => {
 					/>
 				)}
 			/>
-			<FAB />
+			<ReportCasesFAB />
 		</ScreenWrapper>
 	);
 };

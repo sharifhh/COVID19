@@ -62,9 +62,15 @@ const reportCases: (params: {
 	return Promise.resolve();
 };
 
+const resetLocalData: () => Promise<void> = async () => {
+	useLocalDataStore.getState().resetState();
+	return Promise.resolve();
+};
+
 export const COVID19Service = {
 	mergeDataWithLocalData,
 	getSummary,
 	getCountriesList,
 	reportCases,
+	resetLocalData
 };

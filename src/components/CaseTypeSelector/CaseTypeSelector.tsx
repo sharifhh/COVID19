@@ -4,32 +4,32 @@ import { CaseTypeEnum } from 'types';
 import { styles } from './styles';
 import { Option } from './Option';
 
-interface SorterProps {
-	sortCase: CaseTypeEnum;
-	setSortCase: (sortCase: CaseTypeEnum) => void;
+interface CaseTypeSelectorProps {
+	caseType: CaseTypeEnum;
+	onChange: (sortCase: CaseTypeEnum) => void;
 }
 
-export const Sorter: FC<SorterProps> = ({ sortCase, setSortCase }) => {
-	const onPress = useCallback(option => setSortCase(option), [setSortCase]);
+export const CaseTypeSelector: FC<CaseTypeSelectorProps> = ({ caseType, onChange }) => {
+	const onPress = useCallback(option => onChange(option), [onChange]);
 
 	return (
 		<View style={styles.container}>
 			<Option
 				isFirst
-				isSelected={sortCase === CaseTypeEnum.confirmed}
+				isSelected={caseType === CaseTypeEnum.confirmed}
 				option={CaseTypeEnum.confirmed}
 				onPress={onPress}
 				text="Confirmed"
 			/>
 			<Option
-				isSelected={sortCase === CaseTypeEnum.recovered}
+				isSelected={caseType === CaseTypeEnum.recovered}
 				option={CaseTypeEnum.recovered}
 				onPress={onPress}
 				text="Recovered"
 			/>
 			<Option
 				isLast
-				isSelected={sortCase === CaseTypeEnum.deaths}
+				isSelected={caseType === CaseTypeEnum.deaths}
 				option={CaseTypeEnum.deaths}
 				onPress={onPress}
 				text="Deaths"
