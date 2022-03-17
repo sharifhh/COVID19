@@ -25,7 +25,7 @@ export const ReportCasesFAB: FC = () => {
 
 	const { reportCases } = useReportCases();
 
-	const { control, handleSubmit } = useForm({
+	const { control, handleSubmit, reset } = useForm({
 		defaultValues: {
 			country: 'US',
 			caseType: CaseTypeEnum.recovered,
@@ -39,8 +39,10 @@ export const ReportCasesFAB: FC = () => {
 				...data,
 				reportedCases: Number(data.reportedCases) || 0,
 			});
+			reset();
+			bottomSheetRef.current?.close();
 		},
-		[reportCases],
+		[reportCases, reset],
 	);
 
 	return (
